@@ -1,4 +1,4 @@
-"""Logging configuration for the RAG Q&A System."""
+"""Logging configuration for the RAGit Q&A System."""
 
 import logging
 import sys

@@ -72,7 +72,7 @@ app.add_middleware(
 )
 
 # Mount static files
-# app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Include routers
 app.include_router(health.router)
@@ -80,21 +80,23 @@ app.include_router(documents.router)
 app.include_router(query.router)
 
 
-# @app.get("/", response_class=HTMLResponse, tags=["Root"])
-# async def root():
-#     """Serve the main UI."""
-#     with open("static/index.html", "r") as f:
-#         return f.read()
-
-@app.get("/", tags=["Root"])
+## Root endpoint with UI
+@app.get("/", response_class=HTMLResponse, tags=["Root"])
 async def root():
-    """Root endpoint."""
-    return {
-        "message": f"Welcome to {settings.app_name}",
-        "version": __version__,
-        "docs": "/docs",
-        "redoc": "/redoc"
-    }
+    """Serve the main UI."""
+    with open("static/index.html", "r") as f:
+        return f.read()
+
+## Root endpoint without UI
+# @app.get("/", tags=["Root"])
+# async def root():
+#     """Root endpoint."""
+#     return {
+#         "message": f"Welcome to {settings.app_name}",
+#         "version": __version__,
+#         "docs": "/docs",
+#         "redoc": "/redoc"
+#     }
 
 
 @app.exception_handler(Exception)

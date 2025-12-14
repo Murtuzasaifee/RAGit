@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
       target: production
-    container_name: rag-qa-api
+    container_name: ragit-api
     ports:
       - "8000:8000"
     env_file:
@@ -29,7 +29,7 @@ services:
       context: .
       dockerfile: Dockerfile
       target: production
-    container_name: rag-qa-api-dev
+    container_name: ragit-api-dev
     ports:
       - "8000:8000"
     env_file:
